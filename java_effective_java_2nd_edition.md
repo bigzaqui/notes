@@ -1,5 +1,5 @@
 # Effective Java 2nd edition
-## Chapter 1
+## Chapter 2
 
 * **Item 1**: Instead of using the constructor of an object, create a Factory function that returns the initialized instance, benefits:
    * Give names to the constructor(s)
@@ -22,6 +22,24 @@
    * TIL of the "class constructor", notation `static {}` inside a class. Runs when the Class is loaded in the JVM, useful to initialize costly instances that we will use multiple times, e.g API towards another app.
    * This item makes an argument against lazy initialization.
    * On the topic of creating vs reusing objects: "failing to make defensive copies where required can lead to insidious bugs and security holes; creting objects unnecessarily merely affects style and performance.", so as a general rule, don't feel the need to have smart code that reutilizes instances.
+*  **Item 6**: Avoid memory leaks, if you are playing with an Array, remember to nullify the keys that are no longer important
+*  **Item 7**: 
+	*  Dont use finalizers due to the fact that you cannot guarantee that a finalizer is executed when needed.
+	* A good practice is to define a custom terminate() method on the class and call it together with a try&finally block. 
+	* Customize the finalize() of your class with a WARNING logging in case this method is executed after the custom terminate() has been called.
+	* if you are a class and need to have a finalize(), you can avoid the need of having your subclasses calling your finalize (super().finalize()) using a `finalizer guardian`.
+	
+## Chapter 3
+* **Item 8**: If you want to override the equals() from Object, read this Item.
+* **item 9**: follow up of above's Item, dont forget to override hashCode()
+* **Item 10**: 
+	* Always override the `toString()` method, it will make your class more pleasant to use.
+	* the `toString()` method consists of the class name followed by an “at” sign (@) and the unsigned hexadeci- mal representation of the hash code 
+* **Item 11**: implementing `Clone()` is complicated, read this Item for guidance. 
+* **Item 12**: if possible, implement the `Comparable` interface on your classes, it will make your class work with plenty of other classes and algorithms that depend on it
+	
+
+   
 # Video notes
 * **Part 1**:
   * be careful of mutability and sharing: Java is cool due to the explicit type, some frameworks allow you to play with this as long as you know what you are doing (python style) but this could create trouble if the code is gonna be shared with others... Keep focused on having standard code.
