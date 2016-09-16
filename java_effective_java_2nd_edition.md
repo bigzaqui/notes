@@ -71,7 +71,7 @@
   * `tagged class` is the name of a class that tries to do what could be easily done with inheritance, avoid them, use inheritance instead.
 * **Item 21**:
   * Java doesn't allow you to reference methods by pointing to them, eg in Python:
-   ```python
+```python
 def me():
    pass
 x = me
