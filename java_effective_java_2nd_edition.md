@@ -71,12 +71,14 @@
   * `tagged class` is the name of a class that tries to do what could be easily done with inheritance, avoid them, use inheritance instead.
 * **Item 21**:
   * Java doesn't allow you to reference methods by pointing to them, eg in Python:
+
 ```python
 def me():
    pass
 x = me
 x()
 ``` 
+
   * The strategy pattern: allows you to change inside behaviour of your instance, [link](http://stackoverflow.com/questions/91932/how-does-the-strategy-pattern-work)
    
 #Things learned on the way
