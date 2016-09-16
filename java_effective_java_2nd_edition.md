@@ -5,7 +5,7 @@
    * Give names to the constructor(s)
    * multiple constructors without having to declare multiple constructors with the same arguments but in different order (super hack)
    * allows to implement the flightway pattern (avoid constructing repeated objects), for example when using casting.
-   * allows you to return subtypes of the class, hiding the constructor and allowing you to play with the 
+   * allows you to return subtypes of the class, hiding the constructor and allowing you to play with what the factory returns.
    * Take into consideration, a class declared with no accessible constructor cannot be subtyped, forcing you to use composition [(item 16)](#item16)
    
 * **Item 2**: use builders, they simulate named optional parameters, makes a class with multiple variables easier to write, and to read.
@@ -39,7 +39,7 @@
 * **Item 11**: implementing `Clone()` is complicated, read this Item for guidance. 
 * **Item 12**: if possible, implement the `Comparable` interface on your classes, it will make your class work with plenty of other classes and algorithms that depend on it
 
-## CHapter 14
+## Chapter 14
 * **Item 13**:
    * A well-designed module hides all of its implementation details, cleanly separating its API from its implementation.
    * Make each class as innaccesible as possible, just as in security, only allow the necessary privileges for the module to work, this helps you expose only the API of your module, hiding the implementation details.
@@ -48,19 +48,37 @@
    * be careful of defining final fields as `public` if they reference to a mutable object, this allows access to the internals of the class by modifying the object being referenced.
    * applying these restrictions allow you to modify the internals of the class without worring about compatiblity issues, once of your class members is public, you are forced to maintain it.
 * **Item 15**:
-   * If possible, try to create inmutable classes, they are easier to design, implement and use than utable classes. 
+   * If possible, try to create inmutable classes, they are easier to design, implement and use than mutable classes. 
    * The problem with inmutable classes is that they might create new instances when called a method that makes a change in the instance, this might affect performance.
-   * for creating an inmutable class you have to declare it as final or you can use a private consturctor with a static factory
+   * for creating an inmutable class you have to declare it as final or you can use a private constuctor with a static factory
    * Classes should be immutable unless there’s a very good reason to make them mutable
    * having a `reuse` or `reinitialize` method often gains little or no performance benefits to the cost of added complexity. Keep it stateless stupid. 
-* <a name="item16"></a>**Item 16 & 17**: 
+* **[Item 16 & 17](id:item16)**: 
    * Working with inheritance is recommended only when you control the superclass and the subclasses, inter package inheritance is not a good idea.
    * Your subclasses are closely dependent of the superclass of which they inherit, so the versions of the code of the subclass are linked to a specific release of the superclass, even if you dont want it to be.
    * a safer approach when using inheritance is to only add custom methods and avoid overriding.
    * when deciding to use inherintance or not, if B is not an A, but needs some of the methods of A, have an instance of A be part of the private fields of B and use the methods internally instead of inheritance.
    * If you want to have a class that is safe to inherit, be sure to make explicit in the documentation those methods that cannot be overwritten.
 * **Item 18**:
-
+   * Interfaces are nicer than abstract classes, let's use more of those.
+   * Interfaces provide flexibility by allowing you to have multiple interfaces being extended by a class (eg: Singer and SongWriter into SingerAndWriter).
+   * Abstract Classes + Interfaces = Abstract Interfaces, by defining an abstract class with a `skeletal implementation` of the interface, you get the best of the two worlds. [nice explanation](https://10kloc.wordpress.com/2012/12/03/abstract-interfaces-the-mystery-revealed/)
+   * Once an interface is released and widely implemented, it is almost impossible to change, if you add a new method, previous classes that implement the interface will no longer compile.
+* **Item 19**:
+  * When a class implements an interface it allows us to know what can we do with the class, that should be the only purpose of the interfaces
+  * A bad example of using interfaces is having an interface that only defines constants... bad bad coder. Use `Enum` or a `utility class`
+* **Item 20**:
+  * `tagged class` is the name of a class that tries to do what could be easily done with inheritance, avoid them, use inheritance instead.
+* **Item 21**:
+  * Java doesn't allow you to reference methods by pointing to them, eg in Python:
+   ```python
+def me():
+ pass
+x = me
+x()
+``` 
+  * The strategy pattern: allows you to change inside behaviour of your instance, [link](http://stackoverflow.com/questions/91932/how-does-the-strategy-pattern-work)
+   
 #Things learned on the way
 * Mixin is a way in Java 8 to allow multiple inheritance via interfaces, this is done by using method implementation on the interface declarations. [link](http://hannesdorfmann.com/android/java-mixins)
 
