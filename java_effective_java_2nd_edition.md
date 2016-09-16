@@ -34,10 +34,34 @@
 * **item 9**: follow up of above's Item, dont forget to override hashCode()
 * **Item 10**: 
 	* Always override the `toString()` method, it will make your class more pleasant to use.
-	* the `toString()` method consists of the class name followed by an “at” sign (@) and the unsigned hexadeci- mal representation of the hash code 
+	* the `toString()` method returns by default the class name followed by an “at” sign (@) and the unsigned hexadeci- mal representation of the hash code 
 * **Item 11**: implementing `Clone()` is complicated, read this Item for guidance. 
 * **Item 12**: if possible, implement the `Comparable` interface on your classes, it will make your class work with plenty of other classes and algorithms that depend on it
-	
+
+## CHapter 14
+* **Item 13**:
+   * A well-designed module hides all of its implementation details, cleanly separating its API from its implementation.
+   * Make each class as innaccesible as possible, just as in security, only allow the necessary privileges for the module to work, this helps you expose only the API of your module, hiding the implementation details.
+   * If you have a private package top level class used only by another class, consider making it instead a nested private class inside the class that is using it, this reduces the unnecessary acces from other classes inside this package.
+   * the `default` privilege mode means `package-private`, this means accessible from any class inside the package it was declared.
+   * be careful of defining final fields as `public` if they reference to a mutable object, this allows access to the internals of the class by modifying the object being referenced.
+   * applying these restrictions allow you to modify the internals of the class without worring about compatiblity issues, once of your class members is public, you are forced to maintain it.
+* **Item 15**:
+   * If possible, try to create inmutable classes, they are easier to design, implement and use than utable classes. 
+   * The problem with inmutable classes is that they might create new instances when called a method that makes a change in the instance, this might affect performance.
+   * for creating an inmutable class you have to declare it as final or you can use a private consturctor with a static factory
+   * Classes should be immutable unless there’s a very good reason to make them mutable
+   * having a `reuse` or `reinitialize` method often gains little or no performance benefits to the cost of added complexity. Keep it stateless stupid. 
+* **Item 16 & 17**: 
+   * Working with inheritance is recommended only when you control the superclass and the subclasses, inter package inheritance is not a good idea.
+   * Your subclasses are closely dependent of the superclass of which they inherit, so the versions of the code of the subclass are linked to a specific release of the superclass, even if you dont want it to be.
+   * a safer approach when using inheritance is to only add custom methods and avoid overriding.
+   * when deciding to use inherintance or not, if B is not an A, but needs some of the methods of A, have an instance of A be part of the private fields of B and use the methods internally instead of inheritance.
+   * If you want to have a class that is safe to inherit, be sure to make explicit in the documentation those methods that cannot be overwritten.
+* **Item 18**:
+
+#Things learned on the way
+* Mixin is a way in Java 8 to allow multiple inheritance via interfaces, this is done by using method implementation on the interface declarations. [link](http://hannesdorfmann.com/android/java-mixins)
 
    
 # Video notes
