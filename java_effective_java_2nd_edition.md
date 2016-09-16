@@ -6,7 +6,7 @@
    * multiple constructors without having to declare multiple constructors with the same arguments but in different order (super hack)
    * allows to implement the flightway pattern (avoid constructing repeated objects), for example when using casting.
    * allows you to return subtypes of the class, hiding the constructor and allowing you to play with the 
-   * Take into consideration, a class declared with no accessible constructor cannot be subtyped, forcing you to use composition [pookie](#pookie)                
+   * Take into consideration, a class declared with no accessible constructor cannot be subtyped, forcing you to use composition [(item 16)](#item16)
    
 * **Item 2**: use builders, they simulate named optional parameters, makes a class with multiple variables easier to write, and to read.
    * You can add checkers or semantic logic to the builder setters (e,g: check that the parameters make sense), this way you keep the Class that you are building clean of the logic, easier to read! 
@@ -53,7 +53,7 @@
    * for creating an inmutable class you have to declare it as final or you can use a private consturctor with a static factory
    * Classes should be immutable unless there’s a very good reason to make them mutable
    * having a `reuse` or `reinitialize` method often gains little or no performance benefits to the cost of added complexity. Keep it stateless stupid. 
-* <a name="pookie"></a>**Item 16 & 17**: 
+* <a name="item16"></a>**Item 16 & 17**: 
    * Working with inheritance is recommended only when you control the superclass and the subclasses, inter package inheritance is not a good idea.
    * Your subclasses are closely dependent of the superclass of which they inherit, so the versions of the code of the subclass are linked to a specific release of the superclass, even if you dont want it to be.
    * a safer approach when using inheritance is to only add custom methods and avoid overriding.
