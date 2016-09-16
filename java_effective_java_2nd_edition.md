@@ -73,7 +73,7 @@
   * Java doesn't allow you to reference methods by pointing to them, eg in Python:
    ```python
 def me():
- pass
+   pass
 x = me
 x()
 ``` 
