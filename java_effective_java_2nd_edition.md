@@ -70,7 +70,8 @@
 * **Item 20**:
   * `tagged class` is the name of a class that tries to do what could be easily done with inheritance, avoid them, use inheritance instead.
 * **Item 21**:
-  * Java doesn't allow you to reference methods by pointing to them, eg in Python:
+  * The strategy pattern: allows you to change inside behaviour of your instance, [link](http://stackoverflow.com/questions/91932/how-does-the-strategy-pattern-work)
+    * Java doesn't allow you to reference methods by pointing to them, thats when strattegy pattern can be useful, eg in Python:
 
 ```python
 def me():
@@ -78,8 +79,17 @@ def me():
 x = me
 x()
 ``` 
-
-  * The strategy pattern: allows you to change inside behaviour of your instance, [link](http://stackoverflow.com/questions/91932/how-does-the-strategy-pattern-work)
+* **Item 22**: 
+  * Defines the 4 kind of sub classes in Java: static, non static, anonymous and local.
+  * When defining a inner class, push them to be static if possible, will make life easier by not having a reference to a specific instance of the class.
+## Chapter 5
+* **Item 23**: 
+  * Don't use Raw types without specifying the Class they use (eg: use `Iterator<String>` instead of `Iterator`), this also goes when using Iterator, no need of using casting. remember the reader friendly loop syntax.  
+  
+  
+#   QUESTION?
+when you have List<?>
+  
    
 #Things learned on the way
 * Mixin is a way in Java 8 to allow multiple inheritance via interfaces, this is done by using method implementation on the interface declarations. [link](http://hannesdorfmann.com/android/java-mixins)
