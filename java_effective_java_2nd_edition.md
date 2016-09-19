@@ -71,7 +71,7 @@
   * `tagged class` is the name of a class that tries to do what could be easily done with inheritance, avoid them, use inheritance instead.
 * **Item 21**:
   * The strategy pattern: allows you to change inside behaviour of your instance, [link](http://stackoverflow.com/questions/91932/how-does-the-strategy-pattern-work)
-    * Java doesn't allow you to reference methods by pointing to them, thats when strattegy pattern can be useful, eg in Python:
+  * Java doesn't allow you to reference methods by pointing to them, thats when strattegy pattern can be useful, eg in Python:
 
 ```python
 def me():
@@ -82,10 +82,65 @@ x()
 * **Item 22**: 
   * Defines the 4 kind of sub classes in Java: static, non static, anonymous and local.
   * When defining a inner class, push them to be static if possible, will make life easier by not having a reference to a specific instance of the class.
+
 ## Chapter 5
 * **Item 23**: 
   * Don't use Raw types without specifying the Class they use (eg: use `Iterator<String>` instead of `Iterator`), this also goes when using Iterator, no need of using casting. remember the reader friendly loop syntax.  
+
+* **Item 24**:
+  * Eliminate or Suppress (when you are sure the code is type safe) warnings related to type check, don't ignore them, they will bite you in the ass.  
+  * When suppressing warnings, leave a comment mentioning why is it safe to do so.
+* **Item 25**:
+  * Use Lists instead of Arrays when possible, your code is more flexible, and enforces element types at compile time 
+* **Item 26**: Use Generics for all the things!
+* **Item 28**:
+  * Using bounded wildcard brings you the flexibility that parametrized types don't have (due to the fact of being invariant) by the definition of `producers` and `consumers`
+  * `Iterable<? extends E>` and `Collection<? super E>` as examples
+  * tl;dr: "PECS" (short for Producer extends and Consumer super) is from the collection's point of view. If you are only pulling items from a generic collection, it is a producer and you should use extends; if you are only stuffing items in, it is a consumer and you should use super. If you do both with the same collection, you shouldn't use either extends or super. ([link](http://stackoverflow.com/questions/2723397/what-is-pecs-producer-extends-consumer-super))
+* **Item 29**:
+  * Given a class T, I can do T.cast(), the name of this is `dinamically casts`
+  * Fun example of using classes as the key of a HashMap.
+
+## Chapter 6
+* **Item 31**: Enums are there for a purpose, use them!, also when you need to find the size of an enum, do not use the `ordinal()` method.
+* **Item 36**: use annotations when possible, specially the `@override`
+
+## Chapter 7
+* **Item 38**:
+  * Do validation of parameters ASAP, helps debugging and avoids the execution of lines that will end up in a failure 
+  * Validation can be costly, one alternative is to rely in implicit validation (done by the logic of a method) than doing a "manual" validation
+  * `exception translation idiom`: see item 61.
+* **Item 39**:
+  * When dealing with mutable parameters (object references) as parameters for a class method/constructor, make copies of the objects and use those copies instead the original parameters, removing the possiblity of the API's user of playing with the referenced objects later on... same when using getters, return copies, not the reference to the internal object.
+  * Order: Make copies, perform a validity check, continue with the code's execution.
+* **Item 40**: Rules to follow when creating a method: naming convention, length of parameters, convenience methods..
+* **Item 41**:
+  * Overloading: multiple methods with the same name but different parameter list, Java decides which one to run at compile time based on the parameter list
+  * Overriding: same method defined in a class and in the subclasses that inherit from that class, Java decides which one to run at runtime base on the most specific.
+  * Avoid using overloading, it gets confusing.
+  * One case where is OK to use overloading is when the 2 methods have the same effect, eg: 
+
+```python
+def lookup(id=None):
+   .get(id)
+def lookup(name=None):
+   .search(name=name)
+``` 
+
+* **Item 42**:
+  * when using `varargs`, use 1 or more parameters 
+  * `varargs` should be used with respect, use it only when is clear that the benefits of having are worth the usage.
+* **Item 43**:
+  * Do not return `null`, forces the client to do extra verifications  
   
+## Chapter 8
+* **Item 45**: You can do this!
+```java 
+   for (int i = 0, n = expensiveComputation(); i < n; i++) {       doSomething(i);}
+``` 
+
+
+
   
 #   QUESTION?
 when you have List<?>
@@ -93,7 +148,18 @@ when you have List<?>
    
 #Things learned on the way
 * Mixin is a way in Java 8 to allow multiple inheritance via interfaces, this is done by using method implementation on the interface declarations. [link](http://hannesdorfmann.com/android/java-mixins)
+* Generics are confusing, [here's the bible for them](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
+* Use Lists instead of Arrays
+* [Steps for optimizing](http://stackoverflow.com/a/716645/1044704):
+  * Don't optimize until you have a nice, clean, and working version of your code. Changing to generic types could very well be motivated at this step already.
+  * When you have a version that is nice and clean, decide if it is fast enough.
+  * If it isn't fast enough, measure its performance. This step is important for two reasons. If you don't measure you won't (1) know the impact of any optimizations you make and (2) know where to optimize.
+  * Optimize the hottest part of your code.
+  * Measure again. This is just as important as measuring before. If the optimization didn't improve things, revert it. Remember, the code without the optimization was clean, nice, and working. 
 
+
+##Pending
+ * full read the generics FAQ
    
 # Video notes
 * **Part 1**:
