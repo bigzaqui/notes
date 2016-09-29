@@ -135,8 +135,11 @@ def lookup(name=None):
   
 ## Chapter 8
 * **Item 45**: You can do this!
-```java 
-   for (int i = 0, n = expensiveComputation(); i < n; i++) {       doSomething(i);}
+
+```java 
+   for (int i = 0, n = expensiveComputation(); i < n; i++) {
+       doSomething(i);
+}
 ``` 
 
 
@@ -156,6 +159,7 @@ when you have List<?>
   * If it isn't fast enough, measure its performance. This step is important for two reasons. If you don't measure you won't (1) know the impact of any optimizations you make and (2) know where to optimize.
   * Optimize the hottest part of your code.
   * Measure again. This is just as important as measuring before. If the optimization didn't improve things, revert it. Remember, the code without the optimization was clean, nice, and working. 
+  * You should almost always use [.equals()](http://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java)
 
 
 ##Pending
