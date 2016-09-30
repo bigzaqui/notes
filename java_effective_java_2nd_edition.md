@@ -138,7 +138,28 @@ def lookup(name=None):
 ```java 
    for (int i = 0, n = expensiveComputation(); i < n; i++) {       doSomething(i);}
 ``` 
+* **Item 48**: Use `BigDecimal` when you need to have precission, avoid float.
+* **Item 52**: String concatenation is expensive, use with care.
+* **Item 53**: reflexion allows you to play with classes at runtime, pretty much like
 
+```python
+	exec("foo= new {class}()".format(class="Bar"))
+```
+* **Item 54**: `native methods`, Java wrapper of C's code.
+
+## Chapter 9
+
+* **Item 55**: Unlike Python, exceptions should be used in exceptional cases, and not as part of the logic flow.
+* **Item 56**: 3 types of exceptions: checked (allow recovery), unchecked (recovery is impossible, trying to recupare will make more harm) and errors (used by the JVM )
+* **Item 61**: Methods should catch low layer exceptions and throw exceptions that match the purpose of the mehod.
+* **Item 63**: When throwing exceptions, print the variables that contributed to the exception to happen
+
+##Chapter 10
+
+* **Item 66**: `synchronized` method for concurrency, Synchronization is required for reliable communica- tion between threads as well as for mutual exclusion...  volatile lets you tell the JVM "this variable might change" [read this](https://dzone.com/articles/java-volatile-keyword-0)
+
+##Chapter 11
+* **Item 77**: Use enums instead 
 
 
   
@@ -156,6 +177,7 @@ when you have List<?>
   * If it isn't fast enough, measure its performance. This step is important for two reasons. If you don't measure you won't (1) know the impact of any optimizations you make and (2) know where to optimize.
   * Optimize the hottest part of your code.
   * Measure again. This is just as important as measuring before. If the optimization didn't improve things, revert it. Remember, the code without the optimization was clean, nice, and working. 
+  * Enums can be used for more complicated scenarios than just a list of constants, you can create methods, internal values... [link](http://crunchify.com/why-and-for-what-should-i-use-enum-java-enum-examples/)
 
 
 ##Pending
