@@ -135,8 +135,11 @@ def lookup(name=None):
   
 ## Chapter 8
 * **Item 45**: You can do this!
-```java 
-   for (int i = 0, n = expensiveComputation(); i < n; i++) {       doSomething(i);}
+
+```java 
+   for (int i = 0, n = expensiveComputation(); i < n; i++) {
+       doSomething(i);
+}
 ``` 
 * **Item 48**: Use `BigDecimal` when you need to have precission, avoid float.
 * **Item 52**: String concatenation is expensive, use with care.
@@ -178,6 +181,7 @@ when you have List<?>
   * Optimize the hottest part of your code.
   * Measure again. This is just as important as measuring before. If the optimization didn't improve things, revert it. Remember, the code without the optimization was clean, nice, and working. 
   * Enums can be used for more complicated scenarios than just a list of constants, you can create methods, internal values... [link](http://crunchify.com/why-and-for-what-should-i-use-enum-java-enum-examples/)
+  * You should almost always use [.equals()](http://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java)
 
 
 ##Pending
